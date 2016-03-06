@@ -1,0 +1,15 @@
+{
+  "name": "Castle Playground",
+  "description": "Rails demo application for Heroku, spiced up with some threat monitoring.",
+  "repository": "https://github.com/castle/playground",
+  "logo": "https://d1qb2nb5cznatu.cloudfront.net/startups/i/287969-89a61e2fb17081b6272c5a2a74f10da2-medium_jpg.jpg",
+  "keywords": ["rails", "security", "authentication"],
+  "addons": [
+    "castle",
+    "logentries:tryit",
+    "sendgrid"
+  ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
+}
