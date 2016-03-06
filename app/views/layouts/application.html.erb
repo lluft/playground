@@ -13,21 +13,10 @@
       line-height: 1.53;
     }
   </style>
-  <script type="text/javascript">
-      (function(e,t,n,r){function i(e,n){e=t.createElement("script");e.async=1;e.src=r;n=t.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)}e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)};e.attachEvent?e.attachEvent("onload",i):e.addEventListener("load",i,false)})(window,document,"_castle","//d2t77mnxyo7adj.cloudfront.net/v1/c.js")
-      _castle('setAccount', '<%= ENV["CASTLE_APP_ID"] %>');
-      <% if current_user %>
-      _castle('setUser', {
-        id: '<%= current_user.id %>',
-        email: '<%= current_user.email %>'
-      });
-      <% end %>
-      <% if ENV["CASTLE_API_ENDPOINT"] %>
-      _castle('setTrackerUrl', '<%= ENV["CASTLE_API_ENDPOINT"] %>');
-      <% end %>
-      _castle('trackPageview');
-  </script>
 
+  <!--
+    Castle JavaScript tag
+  -->
   <script type="text/javascript">
     (function(e,t,n,r){function i(e,n){e=t.createElement("script");e.async=1;e.src=r;n=t.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)}e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)};e.attachEvent?e.attachEvent("onload",i):e.addEventListener("load",i,false)})(window,document,"_castle","//d2t77mnxyo7adj.cloudfront.net/v1/c.js")
     _castle('setAppId', '<%= ENV["CASTLE_APP_ID"] %>');
@@ -45,6 +34,7 @@
     _castle('setTrackerUrl', '<%= ENV["CASTLE_API_ENDPOINT"] %>');
     <% end %>
   </script>
+
 </head>
 <body style="padding-top: 70px;">
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
