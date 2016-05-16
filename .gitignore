@@ -6,5 +6,5 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore development databases.
-db/developement.*
+# Ignore default databases.
+/db/*.sqlite3
