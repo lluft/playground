@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150610085100) do
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "email",                          null: false
