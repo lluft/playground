@@ -7,4 +7,14 @@ class User < ActiveRecord::Base
     
     UserMailer.suspicious_activity(self, risk_reasons, approve_url, deny_url).deliver_later
   end
+
+  def lock!
+    update_attribute(:lock, true)
+    forgot_password!
+    ClearanceMailer.change_password(self).deliver_later
+  end
+
+  def unlock!
+    update_attribute(:lock, false)
+  end
 end
