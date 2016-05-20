@@ -29,8 +29,7 @@ class CastleHookController < ApplicationController
     user = User.find(auth.user_id)
 
     if auth.risk > 0.9
-      # Lock the user account and send instructions for unlocking
-      # user.lock!
+      user.lock!
     elsif auth.risk > 0.3
       # Notify the user about unusual activity
       user.send_notification_email(auth)
