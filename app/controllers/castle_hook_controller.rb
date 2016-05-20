@@ -14,7 +14,11 @@ class CastleHookController < ApplicationController
       data)
     ).strip
 
-    calculated_hmac == hmac_header
+    if calculated_hmac != hmac_header
+      respond_to do |format|
+        format.json {head :unauthorized}
+      end
+    end
   end
 
   def post
