@@ -16,7 +16,7 @@ class CastleHookController < ApplicationController
 
     if calculated_hmac != hmac_header
       respond_to do |format|
-        format.json {head :unauthorized}
+        format.json { head :unauthorized }
       end
     end
   end
@@ -35,6 +35,6 @@ class CastleHookController < ApplicationController
       user.send_notification_email(auth)
     end
 
-    render :nothing => true, status => :ok
+    render nothing: true, status: :ok
   end
 end

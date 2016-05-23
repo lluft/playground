@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   def lock!
     if !lock
-      puts 'timo'
       update_attribute(:lock, true)
       forgot_password!
       ClearanceMailer.change_password(self).deliver_later
