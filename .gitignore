@@ -2,6 +2,7 @@
 *.cache
 
 *.pid
+.rubocop.yml
 
 # Ignore bundler config.
 /.bundle
