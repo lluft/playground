@@ -11,16 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524071714) do
+ActiveRecord::Schema.define(version: 20160526141158) do
 
-  create_table "castle_sessions", force: :cascade do |t|
-    t.string   "session_id"
-    t.string   "device_id"
-    t.boolean  "verified"
-    t.integer  "status",     default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "devices", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "challenge_token"
+    t.string   "castle_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "devices", ["user_id"], name: "index_devices_on_user_id"
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "device_id"
+  end
+
+  add_index "sessions", ["device_id"], name: "index_sessions_on_device_id"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                                    null: false
