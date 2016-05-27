@@ -4,13 +4,13 @@ class CastleHookController < ApplicationController
 
   def verify_webhook
     data = request.body.read
-    hmac_header = request.headers["X-Castle-Signature"]
-    digest  = OpenSSL::Digest::Digest.new('sha256')
+    hmac_header = request.headers['X-Castle-Signature']
+    digest = OpenSSL::Digest::Digest.new('sha256')
 
     calculated_hmac =
     Base64.encode64(OpenSSL::HMAC.digest(
       digest,
-      ENV["CASTLE_API_SECRET"],
+      ENV['CASTLE_API_SECRET'],
       data)
     ).strip
 

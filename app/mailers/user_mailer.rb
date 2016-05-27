@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @risk_reasons = risk_reasons
     @approve_url = approve_url
-    @deny_url  = deny_url
+    @deny_url = deny_url
     mail(to: user.email, subject: 'Suspicious activity')
   end
 end
