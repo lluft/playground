@@ -7,4 +7,11 @@ class UserMailer < ApplicationMailer
     @deny_url = deny_url
     mail(to: user.email, subject: 'Suspicious activity')
   end
+
+  def challenge(user, challenge_token, device_id)
+    @user = user
+    @challenge_token = challenge_token
+    @device_id = device_id
+    mail(to: user.email, subject: 'Is this you?')
+  end
 end

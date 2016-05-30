@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     
     UserMailer.suspicious_activity(self, risk_reasons, approve_url, deny_url).deliver_later
   end
+
+  def notify_user_with_challenge(challenge_token, device_id)
+    UserMailer.challenge(self, challenge_token, device_id).deliver_later
+  end
 end

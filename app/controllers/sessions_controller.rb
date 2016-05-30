@@ -19,6 +19,8 @@ class SessionsController < Clearance::SessionsController
   end
 
   def destroy
+    session[:castle_id] = nil
+
     castle.track(
       user_id: current_user.id,
       name: '$logout.succeeded')
