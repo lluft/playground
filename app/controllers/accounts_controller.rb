@@ -4,11 +4,9 @@ class AccountsController < ApplicationController
   def authorize
     super
 
-    device = Device.find_by_castle_id(session[:castle_id])
-    device ||= Device.resolve(current_user, castle)
-    session[:castle_id] = device.castle_id
+    device = Device.resolve(current_user, session, castle)
     redirect_to active_challenge_path if device.challenge?
-    # redirect_to blocked_path if device.blocked?
+    redirect_to active_lock_path if device.blocked?
   end
 
   def update
