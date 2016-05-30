@@ -12,7 +12,8 @@ class Device < ActiveRecord::Base
     return device if device
 
     device ||= Device.create(user_id: user.id,
-                             castle_id: authentication.device_id)
+                             castle_id: authentication.device_id,
+                             latest_authentication_id: authentication.id)
 
     if authentication.risk == 0.0
       user.lock!

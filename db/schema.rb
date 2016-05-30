@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530100617) do
+ActiveRecord::Schema.define(version: 20160530141634) do
 
   create_table "devices", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "challenge_token"
     t.string   "castle_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "latest_authentication_id"
   end
 
   add_index "devices", ["user_id"], name: "index_devices_on_user_id"
