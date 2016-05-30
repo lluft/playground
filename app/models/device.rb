@@ -15,9 +15,9 @@ class Device < ActiveRecord::Base
                              castle_id: authentication.device_id,
                              latest_authentication_id: authentication.id)
 
-    if authentication.risk == 0.0
+    if authentication.risk > 0.9
       user.lock!
-    elsif authentication.risk == 0.1
+    elsif authentication.risk > 0.6
       device.challenge!
     elsif authentication.risk > 0.3
       # Notify the user about unusual activity

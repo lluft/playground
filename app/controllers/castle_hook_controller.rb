@@ -27,7 +27,12 @@ class CastleHookController < ApplicationController
 
     # Fetch the user from your database
     user = User.find(auth.user_id)
-    device =  Device.resolve(user, session, castle)
+    device = Device.resolve(user, session, castle)
+    
+    unless device.latest_authentication_id == auth.id
+      device.latest_authentication_id = auth.id
+      device.save
+    end
 
     if auth.risk > 0.9
       user.lock!
