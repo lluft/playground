@@ -27,9 +27,12 @@ class CastleHookController < ApplicationController
 
     # Fetch the user from your database
     user = User.find(auth.user_id)
+    device =  Device.resolve(user, session, castle)
 
     if auth.risk > 0.9
       user.lock!
+    elsif auth.risk > 0.6
+      device.challenge!
     elsif auth.risk > 0.3
       # Notify the user about unusual activity
       user.send_notification_email(auth)
