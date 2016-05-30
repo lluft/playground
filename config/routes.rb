@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resource :feedback, controller: 'feedback', only: [:show]
   # MFA redirect
   resource :active_challenge, :only => [:show]
+  resource :active_lock, :only => [:show]
 
   resources :users, controller: 'users', only: [:create] do
     resource :password,
