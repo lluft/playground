@@ -1,7 +1,6 @@
 class Device < ActiveRecord::Base
   belongs_to :user
-  has_many :sessions, class_name: ActiveRecord::SessionStore::Session
-
+  
   def self.resolve(user, session, castle)
     device = Device.find_by_castle_id(session[:castle_id])
     return device if device

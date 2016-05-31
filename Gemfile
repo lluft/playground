@@ -16,7 +16,6 @@ gem 'rails', '4.2.0'
 gem 'jwt', '~> 1.5.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'clearance', '~> 1.5.0'
-gem 'activerecord-session_store', '~> 1.0.0'
 gem 'jquery-rails', '~> 3.1.2'
 gem 'dotenv-rails', '~> 0.11.1'
 gem 'sdoc', '~> 0.4.0', group: :doc
