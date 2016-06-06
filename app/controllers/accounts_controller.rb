@@ -8,8 +8,9 @@ class AccountsController < ApplicationController
       current_user,
       session.id
     )
-    
     redirect_to active_challenge_path if authentication.status.challenge?
+    redirect_to active_lock_path if authentication.status.lock?
+
   end
 
   def update

@@ -2,12 +2,13 @@ class Authentication < ActiveRecord::Base
   has_one :challenge
   belongs_to :user
   def status
-    AuthenticationStatus.new(challenge)
+    AuthenticationStatus.new(challenge, user)
   end
 end
 
 class AuthenticationStatus
-  def initialize(challenge)
+  def initialize(challenge, user)
+    @user = user
     @challenge = challenge
   end
 
@@ -16,6 +17,6 @@ class AuthenticationStatus
   end
 
   def lock?
-    user.lock?
+    @user.lock?
   end
 end
