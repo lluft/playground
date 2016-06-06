@@ -1,13 +1,13 @@
 class ChallengeController < ApplicationController
   def get
-    castle_id = params[:device_id]
+    castle_authentication_id = params[:authentication_id]
     challenge_token = params[:challenge_token]
-    device = Device.find_by_castle_id(castle_id)
-    if device.challenge_token == challenge_token
-      device.challenge_token = nil
-      device.save
-    end
+    authentication = Authentication.find_by(
+      castle_authentication_id: castle_authentication_id,
+    )
 
-    redirect_to account_path
+    if authentication.challenge.resolve!(challenge_token)
+      redirect_to account_path
+    end
   end
 end

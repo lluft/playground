@@ -10,6 +10,7 @@ class AuthenticationService
       user,
       session_id
     ) unless authentication
+    
     authentication
   end
 
@@ -24,9 +25,10 @@ class AuthenticationService
     if castle_authentication.risk > 0.9
       #user.lock!
     elsif castle_authentication.risk > 0.6
-      authentication.create_challenge
-      # user.notify_user_with_challenge(authentication)
+      challenge = authentication.create_challenge
+      user.notify_user_with_challenge(challenge)
     end
     authentication.save
+    authentication
   end
 end

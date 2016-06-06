@@ -4,8 +4,8 @@ class ActiveChallengesController < ApplicationController
   def challenge_resolved
     if current_user
       authentication = Authentication.find_by(
-        session_id: session_id,
-        user_id: user.id
+        session_id: session.id,
+        user_id: current_user.id
       )
       redirect_to account_path unless authentication && authentication.status.challenge?
     end

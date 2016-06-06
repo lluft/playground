@@ -10,7 +10,6 @@ class AccountsController < ApplicationController
     )
     
     redirect_to active_challenge_path if authentication.status.challenge?
-    redirect_to active_if_path if authentication.status.lock?
   end
 
   def update
