@@ -11,16 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610085100) do
+ActiveRecord::Schema.define(version: 20160606092450) do
 
-  create_table "users", force: true do |t|
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "email",                          null: false
-    t.string   "encrypted_password", limit: 128, null: false
+  create_table "authentications", force: :cascade do |t|
+    t.integer  "user_id",                  null: false
+    t.string   "castle_authentication_id", null: false
+    t.string   "session_id",               null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
+
+  create_table "challenges", force: :cascade do |t|
+    t.integer  "authentication_id",                 null: false
+    t.string   "token"
+    t.boolean  "confirmed",         default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "challenges", ["authentication_id"], name: "index_challenges_on_authentication_id"
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "email",                                          null: false
+    t.string   "encrypted_password", limit: 128,                 null: false
     t.string   "confirmation_token", limit: 128
-    t.string   "remember_token",     limit: 128, null: false
+    t.string   "remember_token",     limit: 128,                 null: false
     t.text     "description"
+    t.boolean  "lock",                           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
