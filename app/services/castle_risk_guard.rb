@@ -1,5 +1,7 @@
 class CastleRiskGuard < Clearance::SignInGuard
   def call
+    return next_guard unless @session.castle_authentication
+
     authentication = @session.castle_authentication
     authentication.risk = 0.7
     if authentication.risk > 0.9
