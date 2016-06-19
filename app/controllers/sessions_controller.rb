@@ -1,5 +1,5 @@
 class SessionsController < Clearance::SessionsController
-  before_filter :authorize, only: [:destroy]
+  before_filter :require_login, only: [:destroy]
 
   def create
     super

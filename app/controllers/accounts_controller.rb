@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_filter :authorize
+  before_filter :require_login
 
   def update
     if current_user.update_attributes params.require(:user).permit(:description)
