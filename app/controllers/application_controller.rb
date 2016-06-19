@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Clearance::Controller
   include Clearance::Authentication
-
+  include ClearanceAuthenticationMonkeyPatch
   protect_from_forgery with: :exception
 
   def index
