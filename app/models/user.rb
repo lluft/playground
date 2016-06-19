@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
   include Clearance::User
 
-  has_many :authentications
-
   def lock!
     unless lock
       update_attribute(:lock, true)
