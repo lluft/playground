@@ -9,6 +9,9 @@ class ChallengeController < ApplicationController
     if authentication
       user = User.find(authentication.user_id)
       sign_in(user)
+      castle.track(
+        name: '$login.succeeded',
+        user_id: user.id)
 
       redirect_to account_path
     end
