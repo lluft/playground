@@ -12,7 +12,6 @@ class SessionsController < Clearance::SessionsController
     sign_in(@user) do |status|
       if status.success?
         castle_authentication = castle.authentications.create(user_id: @user.id)
-        castle_authentication.risk = 0.7
         
         if castle_authentication.risk > 0.9
           current_user.lock!
